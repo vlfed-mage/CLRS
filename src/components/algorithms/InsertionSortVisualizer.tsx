@@ -5,6 +5,7 @@ interface SortStep {
   currentIndex: number;
   comparingIndex: number;
   sorted: boolean;
+  highlightedLine: number;
 }
 
 export const InsertionSortVisualizer = () => {
@@ -28,64 +29,87 @@ export const InsertionSortVisualizer = () => {
     const newSteps: SortStep[] = [];
     const tempArray = [...arr];
 
-    // Initial state
+    // Initial state - line 1: const n = arr.length
     newSteps.push({
       array: [...tempArray],
       currentIndex: -1,
       comparingIndex: -1,
       sorted: false,
+      highlightedLine: 1,
     });
 
+    // line 3: for (let i = 1; i < n; i++)
     for (let i = 1; i < tempArray.length; i++) {
-      const key = tempArray[i];
-      let j = i - 1;
+      // line 4: const key = arr[i]
+      newSteps.push({
+        array: [...tempArray],
+        currentIndex: i,
+        comparingIndex: -1,
+        sorted: false,
+        highlightedLine: 4,
+      });
 
-      // Show current element being inserted
+      const key = tempArray[i];
+
+      // line 5: let j = i - 1
+      let j = i - 1;
       newSteps.push({
         array: [...tempArray],
         currentIndex: i,
         comparingIndex: j,
         sorted: false,
+        highlightedLine: 5,
       });
 
+      // line 9: while (j >= 0 && arr[j] > key)
       while (j >= 0 && tempArray[j] > key) {
-        // Show comparison
         newSteps.push({
           array: [...tempArray],
           currentIndex: i,
           comparingIndex: j,
           sorted: false,
+          highlightedLine: 9,
         });
 
+        // line 10: arr[j + 1] = arr[j]
         tempArray[j + 1] = tempArray[j];
-        j = j - 1;
+        newSteps.push({
+          array: [...tempArray],
+          currentIndex: i,
+          comparingIndex: j,
+          sorted: false,
+          highlightedLine: 10,
+        });
 
-        // Show shift
+        // line 11: j = j - 1
+        j = j - 1;
         newSteps.push({
           array: [...tempArray],
           currentIndex: j + 1,
           comparingIndex: j,
           sorted: false,
+          highlightedLine: 11,
         });
       }
 
+      // line 13: arr[j + 1] = key
       tempArray[j + 1] = key;
-
-      // Show after insertion
       newSteps.push({
         array: [...tempArray],
         currentIndex: j + 1,
         comparingIndex: -1,
         sorted: false,
+        highlightedLine: 13,
       });
     }
 
-    // Final sorted state
+    // Final sorted state - line 16: return arr
     newSteps.push({
       array: [...tempArray],
       currentIndex: -1,
       comparingIndex: -1,
       sorted: true,
+      highlightedLine: 16,
     });
 
     setSteps(newSteps);
@@ -142,23 +166,84 @@ export const InsertionSortVisualizer = () => {
     return 'bg-gray-400';
   };
 
+  const codeLines = [
+    'const insertionSort = (arr: number[]): number[] => {',
+    '  const n = arr.length;',
+    '',
+    '  for (let i = 1; i < n; i++) {',
+    '    const key = arr[i];',
+    '    let j = i - 1;',
+    '',
+    '    // Move elements greater than key',
+    '    // to one position ahead',
+    '    while (j >= 0 && arr[j] > key) {',
+    '      arr[j + 1] = arr[j];',
+    '      j = j - 1;',
+    '    }',
+    '    arr[j + 1] = key;',
+    '  }',
+    '',
+    '  return arr;',
+    '};',
+  ];
+
   const currentStepData = steps[currentStep] || steps[0];
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
-      {/* Visualization Area */}
-      <div className="mb-6 h-64 flex items-end justify-center gap-2 bg-gray-50 rounded p-4">
-        {currentStepData?.array.map((value, index) => (
-          <div key={index} className="flex flex-col items-center gap-2 flex-1">
-            <div
-              className={`w-full ${getBarColor(index, currentStepData)} transition-all duration-300 rounded-t`}
-              style={{
-                height: `${(value / 100) * 200}px`,
-              }}
-            />
-            <span className="text-xs font-mono text-gray-700">{value}</span>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 items-start">
+        {/* Visualization Area */}
+        <div className="flex flex-col h-full">
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">
+            Array Visualization
+          </h3>
+          <div className="flex-1 flex items-end justify-center gap-2 bg-gray-50 rounded p-4">
+            {currentStepData?.array.map((value, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center gap-2 flex-1"
+              >
+                <div
+                  className={`w-full ${getBarColor(
+                    index,
+                    currentStepData
+                  )} transition-all duration-300 rounded-t`}
+                  style={{
+                    height: `${(value / 100) * 320}px`,
+                  }}
+                />
+                <span className="text-xs font-mono text-gray-700">
+                  {value}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Code Display */}
+        <div className="flex flex-col h-full">
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">
+            Algorithm Code
+          </h3>
+          <div className="bg-gray-900 rounded-lg p-4 flex-1">
+            <pre className="text-sm">
+              {codeLines.map((line, index) => (
+                <div
+                  key={index}
+                  className={`transition-colors duration-200 px-2 leading-6 ${
+                    currentStepData?.highlightedLine === index
+                      ? 'bg-yellow-500 bg-opacity-30'
+                      : ''
+                  }`}
+                >
+                  <code className="text-gray-100">
+                    {line || '\u00A0'}
+                  </code>
+                </div>
+              ))}
+            </pre>
+          </div>
+        </div>
       </div>
 
       {/* Legend */}

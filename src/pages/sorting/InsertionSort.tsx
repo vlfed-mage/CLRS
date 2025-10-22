@@ -36,40 +36,10 @@ export const InsertionSort = () => {
 
           {/* Interactive Visualization */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Interactive Visualization</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Interactive Visualization
+            </h2>
             <InsertionSortVisualizer />
-          </section>
-
-          {/* Algorithm */}
-          <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Algorithm</h2>
-            <p className="text-gray-700 mb-4">
-              The algorithm iterates through the array, growing the sorted
-              portion behind it. For each element, it finds the correct
-              position in the sorted portion and inserts it there.
-            </p>
-            <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-              <pre className="text-sm text-gray-100">
-                <code>{`const insertionSort = (arr: number[]): number[] => {
-  const n = arr.length;
-
-  for (let i = 1; i < n; i++) {
-    const key = arr[i];
-    let j = i - 1;
-
-    // Move elements of arr[0..i-1] that are greater than key
-    // to one position ahead of their current position
-    while (j >= 0 && arr[j] > key) {
-      arr[j + 1] = arr[j];
-      j = j - 1;
-    }
-    arr[j + 1] = key;
-  }
-
-  return arr;
-};`}</code>
-              </pre>
-            </div>
           </section>
 
           {/* Complexity Analysis */}
