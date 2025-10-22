@@ -6,8 +6,16 @@ export const Sorting = () => {
     {
       name: 'Insertion Sort',
       path: '/sorting/insertion-sort',
-      description: 'A simple sorting algorithm that builds the final sorted array one item at a time',
+      description:
+        'A simple sorting algorithm that builds the final sorted array one item at a time',
       complexity: 'O(n²)',
+    },
+    {
+      name: 'Merge Sort',
+      path: '/sorting/merge-sort',
+      description:
+        'An efficient divide-and-conquer algorithm with consistent performance',
+      complexity: 'O(n log n)',
     },
   ];
 
