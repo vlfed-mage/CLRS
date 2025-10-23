@@ -71,9 +71,12 @@ npm run preview
   - Average/Worst Case: O(n²)
   - Space: O(1)
 
+- **Selection Sort** - Finds minimum element and places it in sorted position
+  - Best/Average/Worst Case: O(n²)
+  - Space: O(1)
+
 ### Coming Soon
 - Quick Sort
-- Selection Sort
 - Heap Sort
 - Counting Sort
 - Radix Sort
@@ -86,7 +89,10 @@ src/
 ├── components/
 │   ├── algorithms/              # Algorithm visualizers
 │   │   ├── InsertionSortVisualizer.tsx
-│   │   └── MergeSortVisualizer.tsx
+│   │   ├── MergeSortVisualizer.tsx
+│   │   ├── BubbleSortVisualizer.tsx
+│   │   ├── SelectionSortVisualizer.tsx
+│   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
 │   │   └── index.ts
@@ -102,11 +108,20 @@ src/
 ├── config/                      # Application configuration
 ├── modules/
 │   └── navigation/              # Navigation module
+│       ├── components/          # Navigation components
+│       ├── hooks/               # Navigation hooks
+│       ├── config.ts            # Navigation configuration
+│       ├── routes.tsx           # Route definitions
+│       ├── types.ts             # Navigation types
+│       └── Navigation.tsx       # Main navigation component
 ├── pages/
 │   ├── sorting/                 # Sorting algorithms chapter
 │   │   ├── Sorting.tsx          # Chapter overview
 │   │   ├── InsertionSort.tsx    # Insertion sort page
-│   │   └── MergeSort.tsx        # Merge sort page
+│   │   ├── MergeSort.tsx        # Merge sort page
+│   │   ├── BubbleSort.tsx       # Bubble sort page
+│   │   ├── SelectionSort.tsx    # Selection sort page
+│   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
 ├── main.tsx
@@ -132,19 +147,15 @@ Each algorithm page includes an interactive visualizer with these controls:
 - **Play/Pause** - Start or stop the automatic animation
 - **Previous/Next** - Step backward or forward through each operation
 - **Reset** - Return to the first step
-- **New Array** - Generate a random array to sort
+- **New Array/Data** - Generate new random data for the algorithm
 - **Speed Slider** - Adjust animation speed (100ms - 2000ms per step)
 
-### Understanding the Visualizations
+Each visualizer includes:
+- **Color-coded visualization** - Visual representation with color coding to highlight different states
+- **Code panel** - Real TypeScript code with synchronized highlighting
+- **Legend** - Explanation of what each color represents
 
-Each algorithm uses color coding to help you understand what's happening at each step. The specific meaning of colors may vary by algorithm, but generally:
-
-- **Blue** - Active elements (being processed, compared, or merged)
-- **Yellow** - Secondary context (comparison targets, active ranges)
-- **Green** - Sorted or finalized elements
-- **Gray** - Inactive or unsorted elements
-
-Refer to the legend on each algorithm's page for specific color meanings.
+**Note**: Color meanings and visual representations vary by algorithm. Always refer to the legend on each algorithm's page for specific details.
 
 ## 🛠️ Adding New Algorithms
 
@@ -270,6 +281,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Insertion Sort
   - [x] Merge Sort
   - [x] Bubble Sort
+  - [x] Selection Sort
   - [ ] Quick Sort
   - [ ] Heap Sort
   - [ ] Counting Sort
