@@ -11,6 +11,7 @@ export const navigationConfig: NavigationItem[] = [
       { path: '/sorting/bubble-sort', label: 'Bubble Sort' },
       { path: '/sorting/selection-sort', label: 'Selection Sort' },
       { path: '/sorting/shell-sort', label: 'Shell Sort' },
+      { path: '/sorting/quick-sort', label: 'Quick Sort' },
     ],
   },
 ];

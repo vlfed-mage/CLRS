@@ -4,3 +4,4 @@ export { MergeSort } from './MergeSort';
 export { BubbleSort } from './BubbleSort';
 export { SelectionSort } from './SelectionSort';
 export { ShellSort } from './ShellSort';
+export { QuickSort } from './QuickSort';
