@@ -66,8 +66,14 @@ npm run preview
   - Best/Average/Worst Case: O(n log n)
   - Space: O(n)
 
+- **Bubble Sort** - Simple comparison-based sorting with adjacent swaps
+  - Best Case: O(n)
+  - Average/Worst Case: O(n²)
+  - Space: O(1)
+
 ### Coming Soon
 - Quick Sort
+- Selection Sort
 - Heap Sort
 - Counting Sort
 - Radix Sort
@@ -234,11 +240,27 @@ by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein
 
 - [MIT Press Book Page](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/)
 
+### ⚠️ Disclaimer
+
+This project is an independent educational tool created for learning purposes. It is **not affiliated with, endorsed by, or sponsored by** the authors (Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein) or the publisher (MIT Press) of "Introduction to Algorithms." This is a community-driven learning resource intended to complement the textbook through interactive visualizations.
+
+## 💡 Inspiration
+
+This project was inspired by excellent algorithm visualization resources:
+
+- **[VisuAlgo](https://visualgo.net/)** - Visualising data structures and algorithms through animation
+- **[Toptal Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)** - Interactive sorting algorithm visualizations
+- **CLRS Textbook** - The definitive guide to algorithms that inspired the structure and content
+
+Special thanks to these resources for demonstrating the power of visual learning in understanding algorithms.
+
 ## 🎯 Learning Resources
 
 - [MIT OpenCourseWare - Introduction to Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/)
 - [Algorithm Visualizations](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
 - [Big-O Cheat Sheet](https://www.bigocheatsheet.com/)
+- [VisuAlgo](https://visualgo.net/)
+- [Toptal Sorting Algorithms](https://www.toptal.com/developers/sorting-algorithms)
 
 ## 🚀 Roadmap
 
@@ -247,6 +269,7 @@ by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein
 - [ ] **Sorting Algorithms** (In Progress)
   - [x] Insertion Sort
   - [x] Merge Sort
+  - [x] Bubble Sort
   - [ ] Quick Sort
   - [ ] Heap Sort
   - [ ] Counting Sort

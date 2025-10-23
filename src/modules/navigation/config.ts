@@ -8,6 +8,7 @@ export const navigationConfig: NavigationItem[] = [
     children: [
       { path: '/sorting/insertion-sort', label: 'Insertion Sort' },
       { path: '/sorting/merge-sort', label: 'Merge Sort' },
+      { path: '/sorting/bubble-sort', label: 'Bubble Sort' },
     ],
   },
 ];
