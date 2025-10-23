@@ -13,6 +13,7 @@ export const navigationConfig: NavigationItem[] = [
       { path: '/sorting/shell-sort', label: 'Shell Sort' },
       { path: '/sorting/quick-sort', label: 'Quick Sort' },
       { path: '/sorting/heap-sort', label: 'Heap Sort' },
+      { path: '/sorting/counting-sort', label: 'Counting Sort' },
     ],
   },
 ];

@@ -9,6 +9,7 @@ import {
   ShellSort,
   QuickSort,
   HeapSort,
+  CountingSort,
 } from '@/pages/sorting';
 
 export const routes: RouteObject[] = [
@@ -47,5 +48,9 @@ export const routes: RouteObject[] = [
   {
     path: 'sorting/heap-sort',
     element: <HeapSort />,
+  },
+  {
+    path: 'sorting/counting-sort',
+    element: <CountingSort />,
   },
 ];
