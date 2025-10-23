@@ -17,6 +17,27 @@ export const Sorting = () => {
         'An efficient divide-and-conquer algorithm with consistent performance',
       complexity: 'O(n log n)',
     },
+    {
+      name: 'Bubble Sort',
+      path: '/sorting/bubble-sort',
+      description:
+        'Simple comparison-based algorithm that repeatedly swaps adjacent elements if they are in wrong order',
+      complexity: 'O(n²)',
+    },
+    {
+      name: 'Selection Sort',
+      path: '/sorting/selection-sort',
+      description:
+        'Finds the minimum element and places it in sorted position with minimal swaps',
+      complexity: 'O(n²)',
+    },
+    {
+      name: 'Shell Sort',
+      path: '/sorting/shell-sort',
+      description:
+        'Optimization of insertion sort using gap sequences to allow long-distance moves',
+      complexity: 'O(n^3/2)',
+    },
   ];
 
   return (

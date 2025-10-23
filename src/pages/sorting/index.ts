@@ -3,3 +3,4 @@ export { InsertionSort } from './InsertionSort';
 export { MergeSort } from './MergeSort';
 export { BubbleSort } from './BubbleSort';
 export { SelectionSort } from './SelectionSort';
+export { ShellSort } from './ShellSort';

@@ -75,6 +75,12 @@ npm run preview
   - Best/Average/Worst Case: O(n²)
   - Space: O(1)
 
+- **Shell Sort** - Optimization of insertion sort using gap sequences
+  - Best Case: O(n log n)
+  - Average Case: O(n^(3/2))
+  - Worst Case: O(n²)
+  - Space: O(1)
+
 ### Coming Soon
 - Quick Sort
 - Heap Sort
@@ -92,6 +98,7 @@ src/
 │   │   ├── MergeSortVisualizer.tsx
 │   │   ├── BubbleSortVisualizer.tsx
 │   │   ├── SelectionSortVisualizer.tsx
+│   │   ├── ShellSortVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
@@ -121,6 +128,7 @@ src/
 │   │   ├── MergeSort.tsx        # Merge sort page
 │   │   ├── BubbleSort.tsx       # Bubble sort page
 │   │   ├── SelectionSort.tsx    # Selection sort page
+│   │   ├── ShellSort.tsx        # Shell sort page
 │   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -282,6 +290,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Merge Sort
   - [x] Bubble Sort
   - [x] Selection Sort
+  - [x] Shell Sort
   - [ ] Quick Sort
   - [ ] Heap Sort
   - [ ] Counting Sort
