@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { QuickSortVisualizer } from '@/components/algorithms/QuickSortVisualizer';
+import { QuickSortVisualizer } from '@/components/algorithms';
 
 export const QuickSort = () => {
   return (

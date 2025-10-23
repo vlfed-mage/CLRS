@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { ShellSortVisualizer } from '@/components/algorithms/ShellSortVisualizer';
+import { ShellSortVisualizer } from '@/components/algorithms';
 
 export const ShellSort = () => {
   return (

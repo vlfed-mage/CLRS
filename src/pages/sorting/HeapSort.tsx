@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { HeapSortVisualizer } from '@/components/algorithms/HeapSortVisualizer';
+import { HeapSortVisualizer } from '@/components/algorithms';
 
 export const HeapSort = () => {
   return (

@@ -1,10 +1,13 @@
-export { InsertionSortVisualizer } from './InsertionSortVisualizer';
-export { MergeSortVisualizer } from './MergeSortVisualizer';
-export { BubbleSortVisualizer } from './BubbleSortVisualizer';
-export { SelectionSortVisualizer } from './SelectionSortVisualizer';
-export { ShellSortVisualizer } from './ShellSortVisualizer';
-export { QuickSortVisualizer } from './QuickSortVisualizer';
-export { HeapSortVisualizer } from './HeapSortVisualizer';
-export { CountingSortVisualizer } from './CountingSortVisualizer';
-export { RadixSortVisualizer } from './RadixSortVisualizer';
-export { BucketSortVisualizer } from './BucketSortVisualizer';
+// Sorting algorithms
+export {
+  InsertionSortVisualizer,
+  MergeSortVisualizer,
+  BubbleSortVisualizer,
+  SelectionSortVisualizer,
+  ShellSortVisualizer,
+  QuickSortVisualizer,
+  HeapSortVisualizer,
+  CountingSortVisualizer,
+  RadixSortVisualizer,
+  BucketSortVisualizer,
+} from './sorting';

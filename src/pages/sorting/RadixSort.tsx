@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { RadixSortVisualizer } from '@/components/algorithms/RadixSortVisualizer';
+import { RadixSortVisualizer } from '@/components/algorithms';
 
 export const RadixSort = () => {
   return (

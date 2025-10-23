@@ -108,18 +108,20 @@ npm run preview
 ```
 src/
 ├── components/
-│   ├── algorithms/              # Algorithm visualizers
-│   │   ├── InsertionSortVisualizer.tsx
-│   │   ├── MergeSortVisualizer.tsx
-│   │   ├── BubbleSortVisualizer.tsx
-│   │   ├── SelectionSortVisualizer.tsx
-│   │   ├── ShellSortVisualizer.tsx
-│   │   ├── QuickSortVisualizer.tsx
-│   │   ├── HeapSortVisualizer.tsx
-│   │   ├── CountingSortVisualizer.tsx
-│   │   ├── RadixSortVisualizer.tsx
-│   │   ├── BucketSortVisualizer.tsx
-│   │   └── index.ts
+│   ├── algorithms/              # Algorithm visualizers by category
+│   │   ├── sorting/             # Sorting algorithm visualizers
+│   │   │   ├── InsertionSortVisualizer.tsx
+│   │   │   ├── MergeSortVisualizer.tsx
+│   │   │   ├── BubbleSortVisualizer.tsx
+│   │   │   ├── SelectionSortVisualizer.tsx
+│   │   │   ├── ShellSortVisualizer.tsx
+│   │   │   ├── QuickSortVisualizer.tsx
+│   │   │   ├── HeapSortVisualizer.tsx
+│   │   │   ├── CountingSortVisualizer.tsx
+│   │   │   ├── RadixSortVisualizer.tsx
+│   │   │   ├── BucketSortVisualizer.tsx
+│   │   │   └── index.ts
+│   │   └── index.ts             # Re-exports from all categories
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
 │   │   └── index.ts
@@ -194,22 +196,27 @@ Each visualizer includes:
 
 To add a new algorithm to the handbook:
 
-1. **Create the visualizer component** in `src/components/algorithms/`
-   - Define your `SortStep` interface with required fields: `array`, `sorted`, `highlightedLine`
+1. **Create the visualizer component** in the appropriate category folder
+   - For sorting algorithms: `src/components/algorithms/sorting/`
+   - For future categories: `src/components/algorithms/searching/`, `src/components/algorithms/graphs/`, etc.
+   - Define your step interface with required fields: `array`, `sorted`, `highlightedLine`
    - Use `useVisualizerControls` hook for playback controls
    - Use `AlgorithmVisualizer` component for consistent UI
 
-2. **Create the algorithm page** using `AlgorithmPage` component
+2. **Export the visualizer** from the category's `index.ts`
+   - Add export statement to `src/components/algorithms/[category]/index.ts`
+
+3. **Create the algorithm page** using `AlgorithmPage` component
    - Provide configuration: title, overview, visualizer, complexity analysis, steps
 
-3. **Add the route** to `src/modules/navigation/routes.tsx`
+4. **Add the route** to `src/modules/navigation/routes.tsx`
 
-4. **Update the navigation menu** in `src/modules/navigation/config.ts`
+5. **Update the navigation menu** in `src/modules/navigation/config.ts`
 
-Example structure for a new algorithm:
+Example structure for a new sorting algorithm:
 
 ```tsx
-// src/components/algorithms/QuickSortVisualizer.tsx
+// src/components/algorithms/sorting/QuickSortVisualizer.tsx
 import { useState, useEffect } from 'react';
 import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
