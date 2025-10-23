@@ -98,8 +98,10 @@ npm run preview
   - Best/Average/Worst Case: O(d × (n + k)) where d is number of digits
   - Space: O(n + k)
 
-### Coming Soon
-- Bucket Sort
+- **Bucket Sort** - Distribution-based sorting using buckets
+  - Best/Average Case: O(n + k)
+  - Worst Case: O(n²)
+  - Space: O(n + k)
 
 ## 📁 Project Structure
 
@@ -116,6 +118,7 @@ src/
 │   │   ├── HeapSortVisualizer.tsx
 │   │   ├── CountingSortVisualizer.tsx
 │   │   ├── RadixSortVisualizer.tsx
+│   │   ├── BucketSortVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
@@ -150,6 +153,7 @@ src/
 │   │   ├── HeapSort.tsx         # Heap sort page
 │   │   ├── CountingSort.tsx     # Counting sort page
 │   │   ├── RadixSort.tsx        # Radix sort page
+│   │   ├── BucketSort.tsx       # Bucket sort page
 │   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -306,7 +310,7 @@ Special thanks to these resources for demonstrating the power of visual learning
 
 ### Planned Chapters
 
-- [ ] **Sorting Algorithms** (In Progress)
+- [x] **Sorting Algorithms** (Completed)
   - [x] Insertion Sort
   - [x] Merge Sort
   - [x] Bubble Sort
@@ -316,6 +320,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Heap Sort
   - [x] Counting Sort
   - [x] Radix Sort
+  - [x] Bucket Sort
 
 - [ ] **Data Structures**
   - [ ] Stacks and Queues

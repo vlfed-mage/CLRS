@@ -15,6 +15,7 @@ export const navigationConfig: NavigationItem[] = [
       { path: '/sorting/heap-sort', label: 'Heap Sort' },
       { path: '/sorting/counting-sort', label: 'Counting Sort' },
       { path: '/sorting/radix-sort', label: 'Radix Sort' },
+      { path: '/sorting/bucket-sort', label: 'Bucket Sort' },
     ],
   },
 ];

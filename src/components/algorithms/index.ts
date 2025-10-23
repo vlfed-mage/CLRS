@@ -7,3 +7,4 @@ export { QuickSortVisualizer } from './QuickSortVisualizer';
 export { HeapSortVisualizer } from './HeapSortVisualizer';
 export { CountingSortVisualizer } from './CountingSortVisualizer';
 export { RadixSortVisualizer } from './RadixSortVisualizer';
+export { BucketSortVisualizer } from './BucketSortVisualizer';
