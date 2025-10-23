@@ -37,7 +37,7 @@ export const PageContent = ({
   return (
     <div>
       <div
-        className={`fixed left-8 top-24 z-40 transition-opacity
+        className={`fixed left-8 top-24 z-30 transition-opacity
         duration-300 ${isSticky ? 'opacity-100' : 'opacity-0'}`}
         style={{ pointerEvents: isSticky ? 'auto' : 'none' }}
       >

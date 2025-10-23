@@ -11,6 +11,7 @@ import {
   HeapSort,
   CountingSort,
   RadixSort,
+  BucketSort,
 } from '@/pages/sorting';
 
 export const routes: RouteObject[] = [
@@ -57,5 +58,9 @@ export const routes: RouteObject[] = [
   {
     path: 'sorting/radix-sort',
     element: <RadixSort />,
+  },
+  {
+    path: 'sorting/bucket-sort',
+    element: <BucketSort />,
   },
 ];

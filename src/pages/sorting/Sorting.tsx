@@ -66,6 +66,13 @@ export const Sorting = () => {
         'Non-comparative sorting algorithm that processes digits from least to most significant',
       complexity: 'O(d × (n + k))',
     },
+    {
+      name: 'Bucket Sort',
+      path: '/sorting/bucket-sort',
+      description:
+        'Distribution-based sorting that divides elements into buckets and sorts them individually',
+      complexity: 'O(n + k)',
+    },
   ];
 
   return (
