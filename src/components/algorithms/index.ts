@@ -4,3 +4,4 @@ export { BubbleSortVisualizer } from './BubbleSortVisualizer';
 export { SelectionSortVisualizer } from './SelectionSortVisualizer';
 export { ShellSortVisualizer } from './ShellSortVisualizer';
 export { QuickSortVisualizer } from './QuickSortVisualizer';
+export { HeapSortVisualizer } from './HeapSortVisualizer';

@@ -12,6 +12,7 @@ export const navigationConfig: NavigationItem[] = [
       { path: '/sorting/selection-sort', label: 'Selection Sort' },
       { path: '/sorting/shell-sort', label: 'Shell Sort' },
       { path: '/sorting/quick-sort', label: 'Quick Sort' },
+      { path: '/sorting/heap-sort', label: 'Heap Sort' },
     ],
   },
 ];
