@@ -81,8 +81,12 @@ npm run preview
   - Worst Case: O(n²)
   - Space: O(1)
 
+- **Quick Sort** - Efficient divide-and-conquer with partitioning
+  - Best/Average Case: O(n log n)
+  - Worst Case: O(n²)
+  - Space: O(log n)
+
 ### Coming Soon
-- Quick Sort
 - Heap Sort
 - Counting Sort
 - Radix Sort
@@ -99,6 +103,7 @@ src/
 │   │   ├── BubbleSortVisualizer.tsx
 │   │   ├── SelectionSortVisualizer.tsx
 │   │   ├── ShellSortVisualizer.tsx
+│   │   ├── QuickSortVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
@@ -129,6 +134,7 @@ src/
 │   │   ├── BubbleSort.tsx       # Bubble sort page
 │   │   ├── SelectionSort.tsx    # Selection sort page
 │   │   ├── ShellSort.tsx        # Shell sort page
+│   │   ├── QuickSort.tsx        # Quick sort page
 │   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -291,7 +297,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Bubble Sort
   - [x] Selection Sort
   - [x] Shell Sort
-  - [ ] Quick Sort
+  - [x] Quick Sort
   - [ ] Heap Sort
   - [ ] Counting Sort
   - [ ] Radix Sort

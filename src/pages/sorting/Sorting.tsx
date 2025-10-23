@@ -38,6 +38,13 @@ export const Sorting = () => {
         'Optimization of insertion sort using gap sequences to allow long-distance moves',
       complexity: 'O(n^3/2)',
     },
+    {
+      name: 'Quick Sort',
+      path: '/sorting/quick-sort',
+      description:
+        'Highly efficient divide-and-conquer algorithm using partitioning around a pivot element',
+      complexity: 'O(n log n)',
+    },
   ];
 
   return (

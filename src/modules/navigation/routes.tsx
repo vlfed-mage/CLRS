@@ -7,6 +7,7 @@ import {
   BubbleSort,
   SelectionSort,
   ShellSort,
+  QuickSort,
 } from '@/pages/sorting';
 
 export const routes: RouteObject[] = [
@@ -37,5 +38,9 @@ export const routes: RouteObject[] = [
   {
     path: 'sorting/shell-sort',
     element: <ShellSort />,
+  },
+  {
+    path: 'sorting/quick-sort',
+    element: <QuickSort />,
   },
 ];
