@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { BubbleSortVisualizer } from '@/components/algorithms/BubbleSortVisualizer';
+import { BubbleSortVisualizer } from '@/components/algorithms';
 
 export const BubbleSort = () => {
   return (

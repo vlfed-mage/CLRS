@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { CountingSortVisualizer } from '@/components/algorithms/CountingSortVisualizer';
+import { CountingSortVisualizer } from '@/components/algorithms';
 
 export const CountingSort = () => {
   return (

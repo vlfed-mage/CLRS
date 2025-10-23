@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { SelectionSortVisualizer } from '@/components/algorithms/SelectionSortVisualizer';
+import { SelectionSortVisualizer } from '@/components/algorithms';
 
 export const SelectionSort = () => {
   return (

@@ -1,5 +1,5 @@
 import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { BucketSortVisualizer } from '@/components/algorithms/BucketSortVisualizer';
+import { BucketSortVisualizer } from '@/components/algorithms';
 
 export const BucketSort = () => {
   return (
