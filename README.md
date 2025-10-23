@@ -62,8 +62,11 @@ npm run preview
   - Average/Worst Case: O(n²)
   - Space: O(1)
 
+- **Merge Sort** - Divide-and-conquer visualization with merge tracking
+  - Best/Average/Worst Case: O(n log n)
+  - Space: O(n)
+
 ### Coming Soon
-- Merge Sort
 - Quick Sort
 - Heap Sort
 - Counting Sort
@@ -76,7 +79,8 @@ npm run preview
 src/
 ├── components/
 │   ├── algorithms/         # Algorithm visualizers
-│   │   └── InsertionSortVisualizer.tsx
+│   │   ├── InsertionSortVisualizer.tsx
+│   │   └── MergeSortVisualizer.tsx
 │   ├── Header/             # Header component
 │   ├── Layout/             # Layout components
 │   └── PageLayout/         # Page layout components
@@ -86,7 +90,8 @@ src/
 ├── pages/
 │   ├── sorting/            # Sorting algorithms chapter
 │   │   ├── Sorting.tsx     # Chapter overview
-│   │   └── InsertionSort.tsx
+│   │   ├── InsertionSort.tsx
+│   │   └── MergeSort.tsx
 │   └── Home.tsx           # Landing page
 ├── App.tsx
 ├── main.tsx
@@ -115,12 +120,16 @@ Each algorithm page includes an interactive visualizer with these controls:
 - **New Array** - Generate a random array to sort
 - **Speed Slider** - Adjust animation speed (100ms - 2000ms per step)
 
-### Understanding the Colors
+### Understanding the Visualizations
 
-- 🔵 **Blue** - Current element being processed
-- 🟡 **Yellow** - Element being compared
-- 🟢 **Green** - Elements in their sorted position
-- ⚪ **Gray** - Unsorted elements
+Each algorithm uses color coding to help you understand what's happening at each step. The specific meaning of colors may vary by algorithm, but generally:
+
+- **Blue** - Active elements (being processed, compared, or merged)
+- **Yellow** - Secondary context (comparison targets, active ranges)
+- **Green** - Sorted or finalized elements
+- **Gray** - Inactive or unsorted elements
+
+Refer to the legend on each algorithm's page for specific color meanings.
 
 ## 🛠️ Adding New Algorithms
 
@@ -179,7 +188,7 @@ by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein
 
 - [ ] **Sorting Algorithms** (In Progress)
   - [x] Insertion Sort
-  - [ ] Merge Sort
+  - [x] Merge Sort
   - [ ] Quick Sort
   - [ ] Heap Sort
   - [ ] Counting Sort
