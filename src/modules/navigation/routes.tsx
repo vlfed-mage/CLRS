@@ -6,6 +6,7 @@ import {
   MergeSort,
   BubbleSort,
   SelectionSort,
+  ShellSort,
 } from '@/pages/sorting';
 
 export const routes: RouteObject[] = [
@@ -32,5 +33,9 @@ export const routes: RouteObject[] = [
   {
     path: 'sorting/selection-sort',
     element: <SelectionSort />,
+  },
+  {
+    path: 'sorting/shell-sort',
+    element: <ShellSort />,
   },
 ];
