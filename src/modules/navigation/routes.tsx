@@ -1,6 +1,6 @@
 import type { RouteObject } from 'react-router-dom';
-import { Home } from '../../pages/Home';
-import { Sorting, InsertionSort, MergeSort } from '../../pages/sorting';
+import { Home } from '@/pages/Home';
+import { Sorting, InsertionSort, MergeSort } from '@/pages/sorting';
 
 export const routes: RouteObject[] = [
   {

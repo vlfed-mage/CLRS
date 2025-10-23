@@ -1,4 +1,4 @@
-import { PageLayout, PageContent } from '../components/PageLayout';
+import { PageLayout, PageContent } from '@/components/PageLayout';
 import { Link } from 'react-router-dom';
 
 export const Home = () => {

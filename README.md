@@ -78,21 +78,30 @@ npm run preview
 ```
 src/
 ├── components/
-│   ├── algorithms/         # Algorithm visualizers
+│   ├── algorithms/              # Algorithm visualizers
 │   │   ├── InsertionSortVisualizer.tsx
 │   │   └── MergeSortVisualizer.tsx
-│   ├── Header/             # Header component
-│   ├── Layout/             # Layout components
-│   └── PageLayout/         # Page layout components
-├── config/                 # Application configuration
+│   ├── AlgorithmVisualizer/     # Shared visualizer component
+│   │   ├── AlgorithmVisualizer.tsx
+│   │   └── index.ts
+│   ├── AlgorithmPage/           # Shared algorithm page template
+│   │   ├── AlgorithmPage.tsx
+│   │   └── index.ts
+│   ├── Header/                  # Header component
+│   ├── Layout/                  # Layout components
+│   ├── PageLayout/              # Page layout components
+│   └── Icons/                   # Icon components
+├── hooks/                       # Custom React hooks
+│   └── useVisualizerControls.ts # Shared visualizer controls hook
+├── config/                      # Application configuration
 ├── modules/
-│   └── navigation/         # Navigation module
+│   └── navigation/              # Navigation module
 ├── pages/
-│   ├── sorting/            # Sorting algorithms chapter
-│   │   ├── Sorting.tsx     # Chapter overview
-│   │   ├── InsertionSort.tsx
-│   │   └── MergeSort.tsx
-│   └── Home.tsx           # Landing page
+│   ├── sorting/                 # Sorting algorithms chapter
+│   │   ├── Sorting.tsx          # Chapter overview
+│   │   ├── InsertionSort.tsx    # Insertion sort page
+│   │   └── MergeSort.tsx        # Merge sort page
+│   └── Home.tsx                 # Landing page
 ├── App.tsx
 ├── main.tsx
 ├── router.tsx
@@ -136,24 +145,73 @@ Refer to the legend on each algorithm's page for specific color meanings.
 To add a new algorithm to the handbook:
 
 1. **Create the visualizer component** in `src/components/algorithms/`
-2. **Create the algorithm page** in the appropriate chapter folder (e.g., `src/pages/sorting/`)
+   - Define your `SortStep` interface with required fields: `array`, `sorted`, `highlightedLine`
+   - Use `useVisualizerControls` hook for playback controls
+   - Use `AlgorithmVisualizer` component for consistent UI
+
+2. **Create the algorithm page** using `AlgorithmPage` component
+   - Provide configuration: title, overview, visualizer, complexity analysis, steps
+
 3. **Add the route** to `src/modules/navigation/routes.tsx`
+
 4. **Update the navigation menu** in `src/modules/navigation/config.ts`
 
 Example structure for a new algorithm:
 
 ```tsx
-// src/pages/sorting/MergeSort.tsx
-import { PageLayout, PageContent } from '../../components/PageLayout';
-import { MergeSortVisualizer } from '../../components/algorithms';
+// src/components/algorithms/QuickSortVisualizer.tsx
+import { useState, useEffect } from 'react';
+import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
+import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
-export const MergeSort = () => {
+interface SortStep {
+  array: number[];
+  // ... your algorithm-specific fields
+  sorted: boolean;
+  highlightedLine: number;
+}
+
+export const QuickSortVisualizer = () => {
+  const [steps, setSteps] = useState<SortStep[]>([]);
+
+  const generateSteps = (arr: number[]) => {
+    // Generate algorithm steps
+  };
+
+  const controls = useVisualizerControls(steps, {
+    onGenerateArray: () => generateRandomArray(),
+  });
+
   return (
-    <PageLayout>
-      <PageContent title="Merge Sort">
-        {/* Overview, visualization, code, complexity analysis */}
-      </PageContent>
-    </PageLayout>
+    <AlgorithmVisualizer
+      controls={controls}
+      codeLines={CODE_LINES}
+      legendItems={LEGEND_ITEMS}
+      getBarColor={getBarColor}
+    />
+  );
+};
+
+// src/pages/sorting/QuickSort.tsx
+import { AlgorithmPage } from '@/components/AlgorithmPage';
+import { QuickSortVisualizer } from '@/components/algorithms';
+
+export const QuickSort = () => {
+  return (
+    <AlgorithmPage
+      title="Quick Sort"
+      overview={{
+        description: "Your algorithm description...",
+        advantages: ["Advantage 1", "Advantage 2"],
+      }}
+      visualizer={<QuickSortVisualizer />}
+      complexityAnalysis={[
+        { case: 'Best Case', complexity: 'O(n log n)', description: '...' },
+      ]}
+      howItWorks={[
+        { number: 1, title: 'Step 1', description: '...' },
+      ]}
+    />
   );
 };
 ```
