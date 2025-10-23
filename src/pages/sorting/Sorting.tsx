@@ -45,6 +45,13 @@ export const Sorting = () => {
         'Highly efficient divide-and-conquer algorithm using partitioning around a pivot element',
       complexity: 'O(n log n)',
     },
+    {
+      name: 'Heap Sort',
+      path: '/sorting/heap-sort',
+      description:
+        'Binary heap-based sorting algorithm with guaranteed O(n log n) performance in all cases',
+      complexity: 'O(n log n)',
+    },
   ];
 
   return (

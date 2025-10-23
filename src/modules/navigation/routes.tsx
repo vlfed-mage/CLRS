@@ -8,6 +8,7 @@ import {
   SelectionSort,
   ShellSort,
   QuickSort,
+  HeapSort,
 } from '@/pages/sorting';
 
 export const routes: RouteObject[] = [
@@ -42,5 +43,9 @@ export const routes: RouteObject[] = [
   {
     path: 'sorting/quick-sort',
     element: <QuickSort />,
+  },
+  {
+    path: 'sorting/heap-sort',
+    element: <HeapSort />,
   },
 ];

@@ -86,8 +86,11 @@ npm run preview
   - Worst Case: O(n²)
   - Space: O(log n)
 
+- **Heap Sort** - Binary heap-based sorting with guaranteed performance
+  - Best/Average/Worst Case: O(n log n)
+  - Space: O(1)
+
 ### Coming Soon
-- Heap Sort
 - Counting Sort
 - Radix Sort
 - Bucket Sort
@@ -104,6 +107,7 @@ src/
 │   │   ├── SelectionSortVisualizer.tsx
 │   │   ├── ShellSortVisualizer.tsx
 │   │   ├── QuickSortVisualizer.tsx
+│   │   ├── HeapSortVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
@@ -135,6 +139,7 @@ src/
 │   │   ├── SelectionSort.tsx    # Selection sort page
 │   │   ├── ShellSort.tsx        # Shell sort page
 │   │   ├── QuickSort.tsx        # Quick sort page
+│   │   ├── HeapSort.tsx         # Heap sort page
 │   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -298,7 +303,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Selection Sort
   - [x] Shell Sort
   - [x] Quick Sort
-  - [ ] Heap Sort
+  - [x] Heap Sort
   - [ ] Counting Sort
   - [ ] Radix Sort
 

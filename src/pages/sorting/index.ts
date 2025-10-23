@@ -5,3 +5,4 @@ export { BubbleSort } from './BubbleSort';
 export { SelectionSort } from './SelectionSort';
 export { ShellSort } from './ShellSort';
 export { QuickSort } from './QuickSort';
+export { HeapSort } from './HeapSort';
