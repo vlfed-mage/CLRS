@@ -94,8 +94,11 @@ npm run preview
   - Best/Average/Worst Case: O(n + k) where k is range of input
   - Space: O(k)
 
+- **Radix Sort** - Non-comparative sorting by processing digits
+  - Best/Average/Worst Case: O(d × (n + k)) where d is number of digits
+  - Space: O(n + k)
+
 ### Coming Soon
-- Radix Sort
 - Bucket Sort
 
 ## 📁 Project Structure
@@ -112,6 +115,7 @@ src/
 │   │   ├── QuickSortVisualizer.tsx
 │   │   ├── HeapSortVisualizer.tsx
 │   │   ├── CountingSortVisualizer.tsx
+│   │   ├── RadixSortVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
@@ -145,6 +149,7 @@ src/
 │   │   ├── QuickSort.tsx        # Quick sort page
 │   │   ├── HeapSort.tsx         # Heap sort page
 │   │   ├── CountingSort.tsx     # Counting sort page
+│   │   ├── RadixSort.tsx        # Radix sort page
 │   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -310,7 +315,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Quick Sort
   - [x] Heap Sort
   - [x] Counting Sort
-  - [ ] Radix Sort
+  - [x] Radix Sort
 
 - [ ] **Data Structures**
   - [ ] Stacks and Queues

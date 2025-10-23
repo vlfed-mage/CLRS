@@ -7,3 +7,4 @@ export { ShellSort } from './ShellSort';
 export { QuickSort } from './QuickSort';
 export { HeapSort } from './HeapSort';
 export { CountingSort } from './CountingSort';
+export { RadixSort } from './RadixSort';

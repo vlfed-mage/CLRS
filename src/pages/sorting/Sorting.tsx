@@ -59,6 +59,13 @@ export const Sorting = () => {
         'Linear-time non-comparison sorting that counts occurrences of each value',
       complexity: 'O(n + k)',
     },
+    {
+      name: 'Radix Sort',
+      path: '/sorting/radix-sort',
+      description:
+        'Non-comparative sorting algorithm that processes digits from least to most significant',
+      complexity: 'O(d × (n + k))',
+    },
   ];
 
   return (
