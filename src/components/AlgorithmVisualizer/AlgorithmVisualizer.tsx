@@ -62,6 +62,13 @@ export const AlgorithmVisualizer = <TStep,>({
     handlePrevious,
     handleNewArray,
   } = controls;
+
+  // Calculate max value for dynamic scaling
+  const maxValue = currentStepData?.array
+    ? Math.max(...currentStepData.array)
+    : 100;
+  const maxHeight = 200;
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 items-start">
@@ -83,7 +90,7 @@ export const AlgorithmVisualizer = <TStep,>({
                       currentStepData
                     )} transition-all duration-300 rounded-t`}
                     style={{
-                      height: `${(value / 100) * 320}px`,
+                      height: `${(value / maxValue) * maxHeight}px`,
                     }}
                   />
                   <span className="text-xs font-mono text-gray-700">

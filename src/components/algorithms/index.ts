@@ -6,3 +6,4 @@ export { ShellSortVisualizer } from './ShellSortVisualizer';
 export { QuickSortVisualizer } from './QuickSortVisualizer';
 export { HeapSortVisualizer } from './HeapSortVisualizer';
 export { CountingSortVisualizer } from './CountingSortVisualizer';
+export { RadixSortVisualizer } from './RadixSortVisualizer';
