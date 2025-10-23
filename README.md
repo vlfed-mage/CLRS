@@ -90,8 +90,11 @@ npm run preview
   - Best/Average/Worst Case: O(n log n)
   - Space: O(1)
 
+- **Counting Sort** - Linear-time non-comparison sorting using counting
+  - Best/Average/Worst Case: O(n + k) where k is range of input
+  - Space: O(k)
+
 ### Coming Soon
-- Counting Sort
 - Radix Sort
 - Bucket Sort
 
@@ -108,6 +111,7 @@ src/
 │   │   ├── ShellSortVisualizer.tsx
 │   │   ├── QuickSortVisualizer.tsx
 │   │   ├── HeapSortVisualizer.tsx
+│   │   ├── CountingSortVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmVisualizer/     # Shared visualizer component
 │   │   ├── AlgorithmVisualizer.tsx
@@ -140,6 +144,7 @@ src/
 │   │   ├── ShellSort.tsx        # Shell sort page
 │   │   ├── QuickSort.tsx        # Quick sort page
 │   │   ├── HeapSort.tsx         # Heap sort page
+│   │   ├── CountingSort.tsx     # Counting sort page
 │   │   └── index.ts             # Sorting exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -304,7 +309,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Shell Sort
   - [x] Quick Sort
   - [x] Heap Sort
-  - [ ] Counting Sort
+  - [x] Counting Sort
   - [ ] Radix Sort
 
 - [ ] **Data Structures**

@@ -52,6 +52,13 @@ export const Sorting = () => {
         'Binary heap-based sorting algorithm with guaranteed O(n log n) performance in all cases',
       complexity: 'O(n log n)',
     },
+    {
+      name: 'Counting Sort',
+      path: '/sorting/counting-sort',
+      description:
+        'Linear-time non-comparison sorting that counts occurrences of each value',
+      complexity: 'O(n + k)',
+    },
   ];
 
   return (
