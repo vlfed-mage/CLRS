@@ -36,7 +36,6 @@ export const PageContent = ({
 
   return (
     <div>
-      {/* Sticky title that appears on the left when scrolling */}
       <div
         className={`fixed left-8 top-24 z-40 transition-opacity
         duration-300 ${isSticky ? 'opacity-100' : 'opacity-0'}`}
@@ -45,7 +44,6 @@ export const PageContent = ({
         <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
       </div>
 
-      {/* Original title */}
       <div ref={titleRef} className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">{title}</h2>
         {description && <p className="text-gray-600">{description}</p>}
