@@ -103,6 +103,15 @@ npm run preview
   - Worst Case: O(n²)
   - Space: O(n + k)
 
+#### Data Structures
+- **Stack** - Last-In-First-Out (LIFO) data structure
+  - Push/Pop/Peek: O(1)
+  - Space: O(n)
+
+- **Queue** - First-In-First-Out (FIFO) data structure
+  - Enqueue/Dequeue/Peek: O(1)
+  - Space: O(n)
+
 ## 📁 Project Structure
 
 ```
@@ -121,9 +130,14 @@ src/
 │   │   │   ├── RadixSortVisualizer.tsx
 │   │   │   ├── BucketSortVisualizer.tsx
 │   │   │   └── index.ts
+│   │   ├── data-structures/     # Data structure visualizers
+│   │   │   ├── StackVisualizer.tsx
+│   │   │   ├── QueueVisualizer.tsx
+│   │   │   └── index.ts
 │   │   └── index.ts             # Re-exports from all categories
-│   ├── AlgorithmVisualizer/     # Shared visualizer component
+│   ├── Visualizer/              # Shared visualizer components
 │   │   ├── AlgorithmVisualizer.tsx
+│   │   ├── DataStructureVisualizer.tsx
 │   │   └── index.ts
 │   ├── AlgorithmPage/           # Shared algorithm page template
 │   │   ├── AlgorithmPage.tsx
@@ -157,6 +171,11 @@ src/
 │   │   ├── RadixSort.tsx        # Radix sort page
 │   │   ├── BucketSort.tsx       # Bucket sort page
 │   │   └── index.ts             # Sorting exports
+│   ├── data-structures/         # Data structures chapter
+│   │   ├── DataStructures.tsx   # Chapter overview
+│   │   ├── Stack.tsx            # Stack page
+│   │   ├── Queue.tsx            # Queue page
+│   │   └── index.ts             # Data structures exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
 ├── main.tsx
@@ -198,13 +217,15 @@ To add a new algorithm to the handbook:
 
 1. **Create the visualizer component** in the appropriate category folder
    - For sorting algorithms: `src/components/algorithms/sorting/`
-   - For future categories: `src/components/algorithms/searching/`, `src/components/algorithms/graphs/`, etc.
+   - For data structures: `src/components/algorithms/data-structures/`
    - Define your step interface with required fields: `array`, `sorted`, `highlightedLine`
    - Use `useVisualizerControls` hook for playback controls
-   - Use `AlgorithmVisualizer` component for consistent UI
+   - For sorting: Use `AlgorithmVisualizer` from `@/components/Visualizer`
+   - For data structures: Use `DataStructureVisualizer` from `@/components/Visualizer`
 
 2. **Export the visualizer** from the category's `index.ts`
-   - Add export statement to `src/components/algorithms/[category]/index.ts`
+   - Add export to `src/components/algorithms/[category]/index.ts`
+   - Re-export is handled automatically in `src/components/algorithms/index.ts`
 
 3. **Create the algorithm page** using `AlgorithmPage` component
    - Provide configuration: title, overview, visualizer, complexity analysis, steps
@@ -218,7 +239,7 @@ Example structure for a new sorting algorithm:
 ```tsx
 // src/components/algorithms/sorting/QuickSortVisualizer.tsx
 import { useState, useEffect } from 'react';
-import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
+import { AlgorithmVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {
@@ -248,6 +269,10 @@ export const QuickSortVisualizer = () => {
     />
   );
 };
+
+// src/components/algorithms/sorting/index.ts
+export { QuickSortVisualizer } from './QuickSortVisualizer';
+// ... other sorting exports
 
 // src/pages/sorting/QuickSort.tsx
 import { AlgorithmPage } from '@/components/AlgorithmPage';
@@ -329,8 +354,9 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Radix Sort
   - [x] Bucket Sort
 
-- [ ] **Data Structures**
-  - [ ] Stacks and Queues
+- [ ] **Data Structures** (In Progress)
+  - [x] Stacks
+  - [x] Queues
   - [ ] Linked Lists
   - [ ] Hash Tables
   - [ ] Binary Search Trees

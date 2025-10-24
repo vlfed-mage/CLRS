@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
+import { AlgorithmVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {

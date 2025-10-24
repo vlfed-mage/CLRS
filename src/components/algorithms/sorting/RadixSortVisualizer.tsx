@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
+import clsx from 'clsx';
+import { AlgorithmVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {
@@ -360,11 +361,12 @@ export const RadixSortVisualizer = () => {
             {controls.currentStepData.buckets.map((bucket, idx) => (
               <div key={idx} className="flex items-center gap-2">
                 <span
-                  className={`text-xs px-2 py-1 rounded font-mono ${
-                    idx === controls.currentStepData.currentBucket
-                      ? 'bg-yellow-200 font-bold'
-                      : 'bg-gray-200'
-                  }`}
+                  className={clsx('text-xs px-2 py-1 rounded font-mono', {
+                    'bg-yellow-200 font-bold':
+                      idx === controls.currentStepData.currentBucket,
+                    'bg-gray-200':
+                      idx !== controls.currentStepData.currentBucket,
+                  })}
                 >
                   [{idx}]:
                 </span>

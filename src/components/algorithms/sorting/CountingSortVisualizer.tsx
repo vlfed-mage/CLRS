@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
+import clsx from 'clsx';
+import { AlgorithmVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {
@@ -312,11 +313,12 @@ export const CountingSortVisualizer = () => {
             {controls.currentStepData.countArray.map((count, idx) => (
               <div
                 key={idx}
-                className={`text-xs px-2 py-1 rounded ${
-                  idx === controls.currentStepData.currentValue
-                    ? 'bg-purple-200 font-bold'
-                    : 'bg-gray-200'
-                }`}
+                className={clsx('text-xs px-2 py-1 rounded', {
+                  'bg-purple-200 font-bold':
+                    idx === controls.currentStepData.currentValue,
+                  'bg-gray-200':
+                    idx !== controls.currentStepData.currentValue,
+                })}
               >
                 [{idx}]: {count}
               </div>
@@ -334,13 +336,15 @@ export const CountingSortVisualizer = () => {
             {controls.currentStepData.outputArray.map((val, idx) => (
               <div
                 key={idx}
-                className={`text-xs px-2 py-1 rounded ${
-                  val === -1
-                    ? 'bg-gray-200 text-gray-400'
-                    : idx === controls.currentStepData.currentIndex
-                      ? 'bg-purple-300 font-bold'
-                      : 'bg-green-200'
-                }`}
+                className={clsx('text-xs px-2 py-1 rounded', {
+                  'bg-gray-200 text-gray-400': val === -1,
+                  'bg-purple-300 font-bold':
+                    val !== -1 &&
+                    idx === controls.currentStepData.currentIndex,
+                  'bg-green-200':
+                    val !== -1 &&
+                    idx !== controls.currentStepData.currentIndex,
+                })}
               >
                 {val === -1 ? '_' : val}
               </div>

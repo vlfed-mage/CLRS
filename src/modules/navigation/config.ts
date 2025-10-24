@@ -18,4 +18,12 @@ export const navigationConfig: NavigationItem[] = [
       { path: '/sorting/bucket-sort', label: 'Bucket Sort' },
     ],
   },
+  {
+    path: '/data-structures',
+    label: 'Data Structures',
+    children: [
+      { path: '/data-structures/stack', label: 'Stack' },
+      { path: '/data-structures/queue', label: 'Queue' },
+    ],
+  },
 ];
