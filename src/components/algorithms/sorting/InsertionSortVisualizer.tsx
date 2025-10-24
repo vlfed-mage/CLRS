@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import type { LegendItem } from '@/components/AlgorithmVisualizer';
-import { AlgorithmVisualizer } from '@/components/AlgorithmVisualizer';
+import type { LegendItem } from '@/components/Visualizer';
+import { AlgorithmVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {

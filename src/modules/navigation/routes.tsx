@@ -13,6 +13,7 @@ import {
   RadixSort,
   BucketSort,
 } from '@/pages/sorting';
+import { DataStructures, Stack, Queue } from '@/pages/data-structures';
 
 export const routes: RouteObject[] = [
   {
@@ -62,5 +63,17 @@ export const routes: RouteObject[] = [
   {
     path: 'sorting/bucket-sort',
     element: <BucketSort />,
+  },
+  {
+    path: 'data-structures',
+    element: <DataStructures />,
+  },
+  {
+    path: 'data-structures/stack',
+    element: <Stack />,
+  },
+  {
+    path: 'data-structures/queue',
+    element: <Queue />,
   },
 ];

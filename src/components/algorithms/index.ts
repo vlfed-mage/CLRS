@@ -11,3 +11,6 @@ export {
   RadixSortVisualizer,
   BucketSortVisualizer,
 } from './sorting';
+
+// Data structures
+export { StackVisualizer, QueueVisualizer } from './data-structures';
