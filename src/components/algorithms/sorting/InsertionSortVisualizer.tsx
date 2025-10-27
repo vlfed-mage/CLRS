@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { LegendItem } from '@/components/Visualizer';
-import { AlgorithmVisualizer } from '@/components/Visualizer';
+import { SortingVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {
@@ -157,7 +157,7 @@ export const InsertionSortVisualizer = () => {
   };
 
   return (
-    <AlgorithmVisualizer
+    <SortingVisualizer
       controls={controls}
       codeLines={CODE_LINES}
       legendItems={LEGEND_ITEMS}

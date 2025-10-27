@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { AlgorithmVisualizer } from '@/components/Visualizer';
+import { SortingVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 
 interface SortStep {
@@ -356,7 +356,7 @@ export const CountingSortVisualizer = () => {
   ) : null;
 
   return (
-    <AlgorithmVisualizer
+    <SortingVisualizer
       controls={controls}
       codeLines={CODE_LINES}
       legendItems={LEGEND_ITEMS}
