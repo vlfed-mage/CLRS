@@ -5,7 +5,7 @@ import type { VisualizerControls, LegendItem } from './types';
 
 export type { VisualizerControls, LegendItem };
 
-interface AlgorithmVisualizerProps<TStep> {
+interface SortingVisualizerProps<TStep> {
   controls: VisualizerControls<
     TStep & {
       array: number[];
@@ -26,13 +26,13 @@ interface AlgorithmVisualizerProps<TStep> {
   extraInfo?: ReactNode;
 }
 
-export const AlgorithmVisualizer = <TStep,>({
+export const SortingVisualizer = <TStep,>({
   controls,
   codeLines,
   legendItems,
   getBarColor,
   extraInfo,
-}: AlgorithmVisualizerProps<TStep>) => {
+}: SortingVisualizerProps<TStep>) => {
   const { currentStep, currentStepData, totalSteps } = controls;
 
   const maxValue = currentStepData?.array

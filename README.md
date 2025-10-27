@@ -137,6 +137,15 @@ src/
 │   │   │   ├── BucketSortVisualizer.tsx
 │   │   │   └── index.ts
 │   │   ├── data-structures/     # Data structure visualizers
+│   │   │   ├── types.ts         # Shared BaseStep and DataStructureConfig
+│   │   │   ├── stack/
+│   │   │   │   ├── helpers.ts
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── StackVisualization.tsx
+│   │   │   │   ├── StackInfo.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── queue/           # Same structure as stack
+│   │   │   ├── linked-list/     # Same structure as stack
 │   │   │   ├── StackVisualizer.tsx
 │   │   │   ├── QueueVisualizer.tsx
 │   │   │   ├── LinkedListVisualizer.tsx
@@ -154,7 +163,8 @@ src/
 │   ├── PageLayout/              # Page layout components
 │   └── Icons/                   # Icon components
 ├── hooks/                       # Custom React hooks
-│   └── useVisualizerControls.ts # Shared visualizer controls hook
+│   ├── useVisualizerControls.ts # Shared visualizer controls hook
+│   └── useDataStructureInitializer.ts # Data structure initialization hook
 ├── config/                      # Application configuration
 ├── modules/
 │   └── navigation/              # Navigation module
@@ -221,22 +231,18 @@ Each visualizer includes:
 
 ## 🛠️ Adding New Algorithms
 
-To add a new algorithm to the handbook:
+### Adding a Sorting Algorithm
 
-1. **Create the visualizer component** in the appropriate category folder
-   - For sorting algorithms: `src/components/algorithms/sorting/`
-   - For data structures: `src/components/algorithms/data-structures/`
+To add a new sorting algorithm:
+
+1. **Create the visualizer component** in `src/components/algorithms/sorting/`
    - Define your step interface with required fields: `array`, `sorted`, `highlightedLine`
    - Use `useVisualizerControls` hook for playback controls
-   - For sorting: Use `AlgorithmVisualizer` from `@/components/Visualizer`
-   - For data structures: Use `DataStructureVisualizer` from `@/components/Visualizer`
+   - Use `AlgorithmVisualizer` from `@/components/Visualizer`
 
-2. **Export the visualizer** from the category's `index.ts`
-   - Add export to `src/components/algorithms/[category]/index.ts`
-   - Re-export is handled automatically in `src/components/algorithms/index.ts`
+2. **Export the visualizer** from `src/components/algorithms/sorting/index.ts`
 
 3. **Create the algorithm page** using `AlgorithmPage` component
-   - Provide configuration: title, overview, visualizer, complexity analysis, steps
 
 4. **Add the route** to `src/modules/navigation/routes.tsx`
 
@@ -304,6 +310,126 @@ export const QuickSort = () => {
     />
   );
 };
+```
+
+### Adding a Data Structure
+
+Data structures follow a modular folder structure with separation of concerns. Each data structure has its own folder containing helpers, constants, visualization, and info components.
+
+Steps to add a new data structure:
+
+1. **Create folder**: `src/components/algorithms/data-structures/[structure-name]/`
+
+2. **Create `helpers.ts`** with configuration injection pattern:
+
+```tsx
+import type { BaseStep, DataStructureConfig } from '../types';
+import { DEFAULT_CONFIG } from '../types';
+
+export interface YourStructureStep extends BaseStep {
+  // Your structure-specific fields
+  array: number[];
+  operation: 'operation1' | 'operation2' | 'idle';
+}
+
+export const generateRandomData = (
+  config: DataStructureConfig = {}
+): number[] => {
+  const { initialSize, minValue, maxValue } = { ...DEFAULT_CONFIG, ...config };
+  // Generate initial data using config values
+};
+
+export const generateSteps = (
+  initialData: number[],
+  config: DataStructureConfig = {}
+): YourStructureStep[] => {
+  const { maxSize, minValue, maxValue } = { ...DEFAULT_CONFIG, ...config };
+  // Generate steps using config values
+};
+```
+
+3. **Create `constants.ts`**:
+
+```tsx
+import type { LegendItem } from '@/components/Visualizer/Legend';
+import type { DataStructureConfig } from '../types';
+
+export const YOUR_STRUCTURE_CONFIG: DataStructureConfig = {
+  maxSize: 10,
+  initialSize: 5,
+  minValue: 1,
+  maxValue: 99,
+};
+
+export const CODE_LINES: string[] = [
+  'operation1() {',
+  '  // implementation',
+  '}',
+];
+
+export const LEGEND_ITEMS: LegendItem[] = [
+  { color: 'bg-blue-500', label: 'Current' },
+];
+```
+
+4. **Create visualization component**: `YourStructureVisualization.tsx`
+
+5. **Create info component**: `YourStructureInfo.tsx`
+
+6. **Create `index.ts`** for barrel exports
+
+7. **Create visualizer**: `YourStructureVisualizer.tsx` using `useDataStructureInitializer` hook:
+
+```tsx
+import { DataStructureVisualizer } from '@/components/Visualizer';
+import { useVisualizerControls } from '@/hooks/useVisualizerControls';
+import { useDataStructureInitializer } from '@/hooks/useDataStructureInitializer';
+import { DEFAULT_CONFIG } from './types';
+import {
+  YourStructureVisualization,
+  YourStructureInfo,
+  CODE_LINES,
+  LEGEND_ITEMS,
+  YOUR_STRUCTURE_CONFIG,
+  generateRandomData,
+  generateSteps,
+} from './your-structure';
+
+export const YourStructureVisualizer = () => {
+  const config = { ...DEFAULT_CONFIG, ...YOUR_STRUCTURE_CONFIG };
+
+  const { steps, initializeData } = useDataStructureInitializer({
+    generateData: generateRandomData,
+    generateSteps,
+    config,
+  });
+
+  const controls = useVisualizerControls(steps, {
+    onGenerateArray: initializeData,
+  });
+
+  const visualization = controls.currentStepData ? (
+    <YourStructureVisualization step={controls.currentStepData} />
+  ) : null;
+
+  const extraInfo = controls.currentStepData ? (
+    <YourStructureInfo step={controls.currentStepData} />
+  ) : null;
+
+  return (
+    <DataStructureVisualizer
+      controls={controls}
+      codeLines={CODE_LINES}
+      legendItems={LEGEND_ITEMS}
+      visualization={visualization}
+      extraInfo={extraInfo}
+    />
+  );
+};
+```
+
+8. **Export from data-structures index** and complete remaining steps (page, route, navigation) same as sorting algorithms.
+
 ```
 
 ## 🛠️ Built With

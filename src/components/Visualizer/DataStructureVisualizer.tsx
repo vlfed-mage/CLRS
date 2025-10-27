@@ -2,23 +2,19 @@ import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import { VisualizerControls as VisualizerControlsComponent } from './VisualizerControls';
 import type { VisualizerControls, LegendItem } from './types';
+import type { BaseStep } from '../algorithms/data-structures/types';
 
 export type { VisualizerControls, LegendItem };
 
-interface DataStructureVisualizerProps<TStep> {
-  controls: VisualizerControls<
-    TStep & {
-      sorted: boolean;
-      highlightedLine: number;
-    }
-  >;
+interface DataStructureVisualizerProps<TStep extends BaseStep> {
+  controls: VisualizerControls<TStep>;
   codeLines: string[];
   legendItems: LegendItem[];
   visualization: ReactNode;
   extraInfo?: ReactNode;
 }
 
-export const DataStructureVisualizer = <TStep,>({
+export const DataStructureVisualizer = <TStep extends BaseStep>({
   controls,
   codeLines,
   legendItems,
@@ -63,15 +59,6 @@ export const DataStructureVisualizer = <TStep,>({
           {/* Step Info */}
           <div className="mb-6 text-sm text-gray-700">
             Step {currentStep} of {totalSteps}
-            {currentStepData?.sorted && (
-              <span
-                className={clsx(
-                  'ml-2 text-green-600 font-semibold'
-                )}
-              >
-                - Complete!
-              </span>
-            )}
           </div>
 
           {/* Controls */}
