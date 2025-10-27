@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { PageLayout, PageContent } from '@/components/PageLayout';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +29,11 @@ export const Home = () => {
             <div className="space-y-4">
               <Link
                 to="/sorting"
-                className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 transition-colors"
+                className={clsx(
+                  'block p-6 bg-white',
+                  'border border-gray-200 rounded-lg shadow',
+                  'hover:bg-gray-50 transition-colors'
+                )}
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Sorting Algorithms</h3>
                 <p className="text-gray-600">

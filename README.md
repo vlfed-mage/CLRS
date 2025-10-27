@@ -112,6 +112,12 @@ npm run preview
   - Enqueue/Dequeue/Peek: O(1)
   - Space: O(n)
 
+- **Linked List** - Linear structure with nodes containing data and next pointer
+  - Insert at Beginning: O(1)
+  - Insert at End: O(n)
+  - Delete/Search: O(n)
+  - Space: O(n)
+
 ## 📁 Project Structure
 
 ```
@@ -133,6 +139,7 @@ src/
 │   │   ├── data-structures/     # Data structure visualizers
 │   │   │   ├── StackVisualizer.tsx
 │   │   │   ├── QueueVisualizer.tsx
+│   │   │   ├── LinkedListVisualizer.tsx
 │   │   │   └── index.ts
 │   │   └── index.ts             # Re-exports from all categories
 │   ├── Visualizer/              # Shared visualizer components
@@ -175,6 +182,7 @@ src/
 │   │   ├── DataStructures.tsx   # Chapter overview
 │   │   ├── Stack.tsx            # Stack page
 │   │   ├── Queue.tsx            # Queue page
+│   │   ├── LinkedList.tsx       # Linked list page
 │   │   └── index.ts             # Data structures exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -357,7 +365,7 @@ Special thanks to these resources for demonstrating the power of visual learning
 - [ ] **Data Structures** (In Progress)
   - [x] Stacks
   - [x] Queues
-  - [ ] Linked Lists
+  - [x] Linked Lists
   - [ ] Hash Tables
   - [ ] Binary Search Trees
   - [ ] Red-Black Trees

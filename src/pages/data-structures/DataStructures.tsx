@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { PageLayout, PageContent } from '@/components/PageLayout';
 import { Link } from 'react-router-dom';
 
@@ -17,6 +18,13 @@ export const DataStructures = () => {
         'First-In-First-Out (FIFO) data structure with enqueue at rear and dequeue at front',
       complexity: 'O(1) enqueue/dequeue',
     },
+    {
+      name: 'Linked List',
+      path: '/data-structures/linked-list',
+      description:
+        'Linear data structure with nodes containing data and reference to next node',
+      complexity: 'O(1) insert at head',
+    },
   ];
 
   return (
@@ -30,7 +38,11 @@ export const DataStructures = () => {
             <Link
               key={ds.path}
               to={ds.path}
-              className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 transition-colors"
+              className={clsx(
+                'block p-6 bg-white',
+                'border border-gray-200 rounded-lg shadow',
+                'hover:bg-gray-50 transition-colors'
+              )}
             >
               <div className="flex justify-between items-start">
                 <div>
@@ -40,7 +52,13 @@ export const DataStructures = () => {
                   <p className="text-gray-600">{ds.description}</p>
                 </div>
                 <div className="ml-4">
-                  <span className="inline-block px-3 py-1 text-sm font-mono bg-blue-100 text-blue-800 rounded">
+                  <span
+                    className={clsx(
+                      'inline-block px-3 py-1',
+                      'text-sm font-mono',
+                      'bg-blue-100 text-blue-800 rounded'
+                    )}
+                  >
                     {ds.complexity}
                   </span>
                 </div>

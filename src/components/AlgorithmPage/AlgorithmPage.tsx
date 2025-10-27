@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import clsx from 'clsx';
 import { PageLayout, PageContent } from '@/components/PageLayout';
 
 export interface ComplexityRow {
@@ -64,16 +65,39 @@ export const AlgorithmPage = ({
               Complexity Analysis
             </h2>
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
+              <table
+                className={clsx(
+                  'min-w-full divide-y divide-gray-200',
+                  'border border-gray-200'
+                )}
+              >
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th
+                      className={clsx(
+                        'px-6 py-3 text-left',
+                        'text-xs font-medium text-gray-500',
+                        'uppercase tracking-wider'
+                      )}
+                    >
                       Case
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th
+                      className={clsx(
+                        'px-6 py-3 text-left',
+                        'text-xs font-medium text-gray-500',
+                        'uppercase tracking-wider'
+                      )}
+                    >
                       Time Complexity
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th
+                      className={clsx(
+                        'px-6 py-3 text-left',
+                        'text-xs font-medium text-gray-500',
+                        'uppercase tracking-wider'
+                      )}
+                    >
                       Description
                     </th>
                   </tr>
@@ -81,10 +105,20 @@ export const AlgorithmPage = ({
                 <tbody className="bg-white divide-y divide-gray-200">
                   {complexityAnalysis.map((row, index) => (
                     <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td
+                        className={clsx(
+                          'px-6 py-4 whitespace-nowrap',
+                          'text-sm font-medium text-gray-900'
+                        )}
+                      >
                         {row.case}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-700">
+                      <td
+                        className={clsx(
+                          'px-6 py-4 whitespace-nowrap',
+                          'text-sm font-mono text-gray-700'
+                        )}
+                      >
                         {row.complexity}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-700">
@@ -105,7 +139,14 @@ export const AlgorithmPage = ({
             <ol className="space-y-4 text-gray-700">
               {howItWorks.map((step) => (
                 <li key={step.number} className="flex gap-3">
-                  <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-800 rounded-full font-semibold">
+                  <span
+                    className={clsx(
+                      'flex-shrink-0 w-8 h-8',
+                      'flex items-center justify-center',
+                      'bg-blue-100 text-blue-800',
+                      'rounded-full font-semibold'
+                    )}
+                  >
                     {step.number}
                   </span>
                   <div>

@@ -24,6 +24,7 @@ export const navigationConfig: NavigationItem[] = [
     children: [
       { path: '/data-structures/stack', label: 'Stack' },
       { path: '/data-structures/queue', label: 'Queue' },
+      { path: '/data-structures/linked-list', label: 'Linked List' },
     ],
   },
 ];

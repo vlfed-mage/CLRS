@@ -13,7 +13,12 @@ import {
   RadixSort,
   BucketSort,
 } from '@/pages/sorting';
-import { DataStructures, Stack, Queue } from '@/pages/data-structures';
+import {
+  DataStructures,
+  Stack,
+  Queue,
+  LinkedList,
+} from '@/pages/data-structures';
 
 export const routes: RouteObject[] = [
   {
@@ -75,5 +80,9 @@ export const routes: RouteObject[] = [
   {
     path: 'data-structures/queue',
     element: <Queue />,
+  },
+  {
+    path: 'data-structures/linked-list',
+    element: <LinkedList />,
   },
 ];

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import clsx from 'clsx';
 import type { NavigationLinkProps } from '../types';
 import { ChevronDown } from '@/components/Icons';
 
@@ -33,7 +34,14 @@ export const NavigationLink = ({ item, isActive }: NavigationLinkProps) => {
           <ChevronDown className="ml-1 h-4 w-4" />
         </Link>
         {isOpen && (
-          <div className="absolute left-0 top-full w-56 bg-white rounded-b-md shadow-lg border-t border-x border-b border-gray-200 z-50">
+          <div
+            className={clsx(
+              'absolute left-0 top-full w-56',
+              'bg-white rounded-b-md shadow-lg',
+              'border-t border-x border-b border-gray-200',
+              'z-50'
+            )}
+          >
             {item.children.map((child) => {
               const isChildActive = location.pathname === child.path;
               return (
