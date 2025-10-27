@@ -13,4 +13,8 @@ export {
 } from './sorting';
 
 // Data structures
-export { StackVisualizer, QueueVisualizer } from './data-structures';
+export {
+  StackVisualizer,
+  QueueVisualizer,
+  LinkedListVisualizer,
+} from './data-structures';

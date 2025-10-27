@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { PageLayout, PageContent } from '@/components/PageLayout';
 import { Link } from 'react-router-dom';
 
@@ -86,7 +87,11 @@ export const Sorting = () => {
             <Link
               key={algorithm.path}
               to={algorithm.path}
-              className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 transition-colors"
+              className={clsx(
+                'block p-6 bg-white',
+                'border border-gray-200 rounded-lg shadow',
+                'hover:bg-gray-50 transition-colors'
+              )}
             >
               <div className="flex justify-between items-start">
                 <div>
@@ -96,7 +101,13 @@ export const Sorting = () => {
                   <p className="text-gray-600">{algorithm.description}</p>
                 </div>
                 <div className="ml-4">
-                  <span className="inline-block px-3 py-1 text-sm font-mono bg-blue-100 text-blue-800 rounded">
+                  <span
+                    className={clsx(
+                      'inline-block px-3 py-1',
+                      'text-sm font-mono',
+                      'bg-blue-100 text-blue-800 rounded'
+                    )}
+                  >
                     {algorithm.complexity}
                   </span>
                 </div>
