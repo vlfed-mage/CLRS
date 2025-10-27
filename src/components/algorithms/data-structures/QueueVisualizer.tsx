@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { DataStructureVisualizer } from '@/components/Visualizer';
 import { useVisualizerControls } from '@/hooks/useVisualizerControls';
 import { useDataStructureInitializer } from '@/hooks/useDataStructureInitializer';
@@ -13,7 +14,10 @@ import {
 } from './queue';
 
 export const QueueVisualizer = () => {
-  const config = { ...DEFAULT_CONFIG, ...QUEUE_CONFIG };
+  const config = useMemo(
+    () => ({ ...DEFAULT_CONFIG, ...QUEUE_CONFIG }),
+    []
+  );
 
   const { steps, initializeData } = useDataStructureInitializer({
     generateData: generateRandomData,
