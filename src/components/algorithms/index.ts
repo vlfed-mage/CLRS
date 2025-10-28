@@ -17,4 +17,5 @@ export {
   StackVisualizer,
   QueueVisualizer,
   LinkedListVisualizer,
+  HashTableVisualizer,
 } from './data-structures';

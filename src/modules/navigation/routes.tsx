@@ -18,6 +18,7 @@ import {
   Stack,
   Queue,
   LinkedList,
+  HashTable,
 } from '@/pages/data-structures';
 
 export const routes: RouteObject[] = [
@@ -84,5 +85,9 @@ export const routes: RouteObject[] = [
   {
     path: 'data-structures/linked-list',
     element: <LinkedList />,
+  },
+  {
+    path: 'data-structures/hash-table',
+    element: <HashTable />,
   },
 ];
