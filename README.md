@@ -118,6 +118,11 @@ npm run preview
   - Delete/Search: O(n)
   - Space: O(n)
 
+- **Hash Table** - Key-value data structure using separate chaining for collision resolution
+  - Insert/Search/Delete (Average): O(1)
+  - Insert/Search/Delete (Worst): O(n)
+  - Space: O(n)
+
 ## 📁 Project Structure
 
 ```
@@ -126,25 +131,34 @@ src/
 │   ├── algorithms/              # Algorithm visualizers by category
 │   │   ├── sorting/             # Sorting algorithm visualizers
 │   │   │   ├── types.ts         # BaseSortStep, SortingConfig, DEFAULT_SORTING_CONFIG
+│   │   │   ├── create-sorting-visualizer.tsx  # Factory for sorting visualizers
 │   │   │   ├── bubble-sort/
 │   │   │   │   ├── helpers.ts
 │   │   │   │   ├── constants.ts
 │   │   │   │   └── index.ts
 │   │   │   ├── insertion-sort/  # Same structure as bubble-sort
 │   │   │   ├── selection-sort/  # Same structure as bubble-sort
-│   │   │   ├── InsertionSortVisualizer.tsx
-│   │   │   ├── MergeSortVisualizer.tsx
+│   │   │   ├── shell-sort/      # With ShellSortInfo.tsx
+│   │   │   ├── quick-sort/      # With QuickSortInfo.tsx
+│   │   │   ├── heap-sort/       # With HeapSortInfo.tsx
+│   │   │   ├── merge-sort/
+│   │   │   ├── counting-sort/
+│   │   │   ├── radix-sort/
+│   │   │   ├── bucket-sort/     # With BucketSortInfo.tsx
 │   │   │   ├── BubbleSortVisualizer.tsx
+│   │   │   ├── InsertionSortVisualizer.tsx
 │   │   │   ├── SelectionSortVisualizer.tsx
 │   │   │   ├── ShellSortVisualizer.tsx
 │   │   │   ├── QuickSortVisualizer.tsx
 │   │   │   ├── HeapSortVisualizer.tsx
+│   │   │   ├── MergeSortVisualizer.tsx
 │   │   │   ├── CountingSortVisualizer.tsx
 │   │   │   ├── RadixSortVisualizer.tsx
 │   │   │   ├── BucketSortVisualizer.tsx
 │   │   │   └── index.ts
 │   │   ├── data-structures/     # Data structure visualizers
 │   │   │   ├── types.ts         # Shared BaseStep and DataStructureConfig
+│   │   │   ├── create-data-structure-visualizer.tsx  # Factory for data structures
 │   │   │   ├── stack/
 │   │   │   │   ├── helpers.ts
 │   │   │   │   ├── constants.ts
@@ -153,14 +167,18 @@ src/
 │   │   │   │   └── index.ts
 │   │   │   ├── queue/           # Same structure as stack
 │   │   │   ├── linked-list/     # Same structure as stack
+│   │   │   ├── hash-table/      # Same structure as stack
 │   │   │   ├── StackVisualizer.tsx
 │   │   │   ├── QueueVisualizer.tsx
 │   │   │   ├── LinkedListVisualizer.tsx
+│   │   │   ├── HashTableVisualizer.tsx
 │   │   │   └── index.ts
 │   │   └── index.ts             # Re-exports from all categories
 │   ├── Visualizer/              # Shared visualizer components
-│   │   ├── AlgorithmVisualizer.tsx
-│   │   ├── DataStructureVisualizer.tsx
+│   │   ├── SortingVisualizer.tsx         # For sorting algorithms
+│   │   ├── DataStructureVisualizer.tsx   # For data structures
+│   │   ├── VisualizerControls.tsx        # Playback controls component
+│   │   ├── types.ts
 │   │   └── index.ts
 │   ├── AlgorithmPage/           # Shared algorithm page template
 │   │   ├── AlgorithmPage.tsx
@@ -201,6 +219,7 @@ src/
 │   │   ├── Stack.tsx            # Stack page
 │   │   ├── Queue.tsx            # Queue page
 │   │   ├── LinkedList.tsx       # Linked list page
+│   │   ├── HashTable.tsx        # Hash table page
 │   │   └── index.ts             # Data structures exports
 │   └── Home.tsx                 # Landing page
 ├── App.tsx
@@ -364,14 +383,10 @@ export type { YourSortStep } from './helpers';
 export { YourSortInfo } from './YourSortInfo';
 ```
 
-6. **Create visualizer**: `YourSortVisualizer.tsx` using `useSortingInitializer` hook:
+6. **Create visualizer**: `YourSortVisualizer.tsx` using the factory pattern:
 
 ```tsx
-import { useMemo } from 'react';
-import { SortingVisualizer } from '@/components/Visualizer';
-import { useVisualizerControls } from '@/hooks/useVisualizerControls';
-import { useSortingInitializer } from '@/hooks/useSortingInitializer';
-import { DEFAULT_SORTING_CONFIG } from './types';
+import { createSortingVisualizer } from './create-sorting-visualizer';
 import {
   CODE_LINES,
   LEGEND_ITEMS,
@@ -381,37 +396,21 @@ import {
   YourSortInfo, // Only if you created an Info component
 } from './your-sort';
 
-export const YourSortVisualizer = () => {
-  const config = useMemo(
-    () => ({ ...DEFAULT_SORTING_CONFIG, ...YOUR_SORT_CONFIG }),
-    []
-  );
-
-  const { steps, initializeData } = useSortingInitializer({
-    generateSteps,
-    config,
-  });
-
-  const controls = useVisualizerControls(steps, {
-    onGenerateArray: initializeData,
-  });
-
-  // Only if you have an Info component:
-  const extraInfo = controls.currentStepData ? (
-    <YourSortInfo step={controls.currentStepData} />
-  ) : null;
-
-  return (
-    <SortingVisualizer
-      controls={controls}
-      codeLines={CODE_LINES}
-      legendItems={LEGEND_ITEMS}
-      getBarColor={getBarColor}
-      extraInfo={extraInfo} // Only if you have an Info component
-    />
-  );
-};
+export const YourSortVisualizer = createSortingVisualizer({
+  sortingConfig: YOUR_SORT_CONFIG,
+  generateSteps,
+  getBarColor,
+  codeLines: CODE_LINES,
+  legendItems: LEGEND_ITEMS,
+  InfoComponent: YourSortInfo, // Optional - only if you have one
+});
 ```
+
+**Note**: The `createSortingVisualizer` factory function handles all the boilerplate:
+- Configuration merging with defaults
+- Hook initialization (`useSortingInitializer`, `useVisualizerControls`)
+- Component structure and rendering
+- Type safety with generics
 
 7. **Export visualizer** from `src/components/algorithms/sorting/index.ts`
 
@@ -422,12 +421,13 @@ export const YourSortVisualizer = () => {
 10. **Update navigation** in `src/modules/navigation/config.ts`
 
 **Key Points**:
-- Use `useSortingInitializer` hook for array generation and initialization
-- Use `useMemo` to prevent config recreation
+- Use `createSortingVisualizer` factory for consistent visualizer creation
+- Factory eliminates ~40 lines of boilerplate per visualizer
 - Step interface extends `BaseSortStep` (array, sorted, highlightedLine)
 - `helpers.ts` contains all algorithm logic: step generation and color logic
 - Optional Info component for complex algorithms that need extra information display
 - Separate concerns: helpers, constants, optional info, visualizer
+- Factory provides: type safety, hook management, configuration merging
 
 ### Adding a Data Structure
 
@@ -495,13 +495,10 @@ export const LEGEND_ITEMS: LegendItem[] = [
 
 6. **Create `index.ts`** for barrel exports
 
-7. **Create visualizer**: `YourStructureVisualizer.tsx` using `useDataStructureInitializer` hook:
+7. **Create visualizer**: `YourStructureVisualizer.tsx` using the factory pattern:
 
 ```tsx
-import { DataStructureVisualizer } from '@/components/Visualizer';
-import { useVisualizerControls } from '@/hooks/useVisualizerControls';
-import { useDataStructureInitializer } from '@/hooks/useDataStructureInitializer';
-import { DEFAULT_CONFIG } from './types';
+import { createDataStructureVisualizer } from './create-data-structure-visualizer';
 import {
   YourStructureVisualization,
   YourStructureInfo,
@@ -512,38 +509,24 @@ import {
   generateSteps,
 } from './your-structure';
 
-export const YourStructureVisualizer = () => {
-  const config = { ...DEFAULT_CONFIG, ...YOUR_STRUCTURE_CONFIG };
-
-  const { steps, initializeData } = useDataStructureInitializer({
-    generateData: generateRandomData,
-    generateSteps,
-    config,
-  });
-
-  const controls = useVisualizerControls(steps, {
-    onGenerateArray: initializeData,
-  });
-
-  const visualization = controls.currentStepData ? (
-    <YourStructureVisualization step={controls.currentStepData} />
-  ) : null;
-
-  const extraInfo = controls.currentStepData ? (
-    <YourStructureInfo step={controls.currentStepData} />
-  ) : null;
-
-  return (
-    <DataStructureVisualizer
-      controls={controls}
-      codeLines={CODE_LINES}
-      legendItems={LEGEND_ITEMS}
-      visualization={visualization}
-      extraInfo={extraInfo}
-    />
-  );
-};
+export const YourStructureVisualizer = createDataStructureVisualizer({
+  dataStructureConfig: YOUR_STRUCTURE_CONFIG,
+  generateData: generateRandomData,
+  generateSteps,
+  codeLines: CODE_LINES,
+  legendItems: LEGEND_ITEMS,
+  VisualizationComponent: YourStructureVisualization,
+  InfoComponent: YourStructureInfo,
+  passMaxSizeToComponents: true, // Optional - only if components need maxSize
+});
 ```
+
+**Note**: The `createDataStructureVisualizer` factory function handles all the boilerplate:
+- Configuration merging with defaults
+- Hook initialization (`useDataStructureInitializer`, `useVisualizerControls`)
+- Props construction (including optional `maxSize`)
+- Component structure and rendering
+- Type safety with generics
 
 8. **Export from data-structures index** and complete remaining steps (page, route, navigation) same as sorting algorithms.
 
@@ -609,7 +592,7 @@ Special thanks to these resources for demonstrating the power of visual learning
   - [x] Stacks
   - [x] Queues
   - [x] Linked Lists
-  - [ ] Hash Tables
+  - [x] Hash Tables
   - [ ] Binary Search Trees
   - [ ] Red-Black Trees
 

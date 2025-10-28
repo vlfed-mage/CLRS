@@ -4,7 +4,7 @@ import type { DataStructureConfig } from '../types';
 export const CODE_LINES = [
   'class HashTable {',
   '  constructor(size) {',
-  '    this.table = Array(size).fill([]).map(() => []);',
+  '    this.table = Array.from({ length: size }, () => []);',
   '  }',
   '',
   '  insert(key, value) {',

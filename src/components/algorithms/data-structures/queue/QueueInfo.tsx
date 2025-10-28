@@ -2,10 +2,10 @@ import type { QueueStep } from './helpers';
 
 interface QueueInfoProps {
   step: QueueStep;
-  maxSize: number;
+  maxSize?: number;
 }
 
-export const QueueInfo = ({ step, maxSize }: QueueInfoProps) => {
+export const QueueInfo = ({ step, maxSize = 10 }: QueueInfoProps) => {
   const size =
     step.rear - step.front + 1 > 0 ? step.rear - step.front + 1 : 0;
 

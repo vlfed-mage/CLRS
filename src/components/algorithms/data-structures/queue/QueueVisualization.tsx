@@ -3,12 +3,12 @@ import type { QueueStep } from './helpers';
 
 interface QueueVisualizationProps {
   step: QueueStep;
-  maxSize: number;
+  maxSize?: number;
 }
 
 export const QueueVisualization = ({
   step,
-  maxSize,
+  maxSize = 10,
 }: QueueVisualizationProps) => {
   return (
     <div className="flex flex-col gap-6 items-center w-full">

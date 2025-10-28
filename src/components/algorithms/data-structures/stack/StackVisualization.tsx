@@ -3,12 +3,12 @@ import type { StackStep } from './helpers';
 
 interface StackVisualizationProps {
   step: StackStep;
-  maxSize: number;
+  maxSize?: number;
 }
 
 export const StackVisualization = ({
   step,
-  maxSize,
+  maxSize = 10,
 }: StackVisualizationProps) => {
   return (
     <div className="flex flex-col-reverse gap-2 items-center w-full">
