@@ -1,8 +1,4 @@
-import { useMemo } from 'react';
-import { SortingVisualizer } from '@/components/Visualizer';
-import { useVisualizerControls } from '@/hooks/useVisualizerControls';
-import { useSortingInitializer } from '@/hooks/useSortingInitializer';
-import { DEFAULT_SORTING_CONFIG } from './types';
+import { createSortingVisualizer } from './create-sorting-visualizer';
 import {
   CODE_LINES,
   LEGEND_ITEMS,
@@ -12,32 +8,11 @@ import {
   ShellSortInfo,
 } from './shell-sort';
 
-export const ShellSortVisualizer = () => {
-  const config = useMemo(
-    () => ({ ...DEFAULT_SORTING_CONFIG, ...SHELL_SORT_CONFIG }),
-    []
-  );
-
-  const { steps, initializeData } = useSortingInitializer({
-    generateSteps,
-    config,
-  });
-
-  const controls = useVisualizerControls(steps, {
-    onGenerateArray: initializeData,
-  });
-
-  const extraInfo = controls.currentStepData ? (
-    <ShellSortInfo step={controls.currentStepData} />
-  ) : null;
-
-  return (
-    <SortingVisualizer
-      controls={controls}
-      codeLines={CODE_LINES}
-      legendItems={LEGEND_ITEMS}
-      getBarColor={getBarColor}
-      extraInfo={extraInfo}
-    />
-  );
-};
+export const ShellSortVisualizer = createSortingVisualizer({
+  sortingConfig: SHELL_SORT_CONFIG,
+  generateSteps,
+  getBarColor,
+  codeLines: CODE_LINES,
+  legendItems: LEGEND_ITEMS,
+  InfoComponent: ShellSortInfo,
+});

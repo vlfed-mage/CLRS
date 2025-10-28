@@ -2,10 +2,10 @@ import type { StackStep } from './helpers';
 
 interface StackInfoProps {
   step: StackStep;
-  maxSize: number;
+  maxSize?: number;
 }
 
-export const StackInfo = ({ step, maxSize }: StackInfoProps) => {
+export const StackInfo = ({ step, maxSize = 10 }: StackInfoProps) => {
   return (
     <div className="text-sm space-y-2">
       <div>

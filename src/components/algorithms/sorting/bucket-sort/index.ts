@@ -5,3 +5,4 @@ export {
 } from './constants';
 export { generateSteps, getBarColor } from './helpers';
 export type { BucketSortStep } from './helpers';
+export { BucketSortInfo } from './BucketSortInfo';

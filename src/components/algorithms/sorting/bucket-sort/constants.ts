@@ -9,7 +9,7 @@ export const BUCKET_SORT_CONFIG: SortingConfig = {
 export const CODE_LINES: string[] = [
   'const bucketSort = (arr: number[]) => {',
   '  const n = arr.length;',
-  '  const buckets: number[][] = Array(n).fill([]).map(() => []);',
+  '  const buckets: number[][] = Array.from({ length: n }, () => []);',
   '',
   '  // Find min and max for normalization',
   '  const min = Math.min(...arr);',
