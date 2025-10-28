@@ -125,6 +125,13 @@ src/
 ├── components/
 │   ├── algorithms/              # Algorithm visualizers by category
 │   │   ├── sorting/             # Sorting algorithm visualizers
+│   │   │   ├── types.ts         # BaseSortStep, SortingConfig, DEFAULT_SORTING_CONFIG
+│   │   │   ├── bubble-sort/
+│   │   │   │   ├── helpers.ts
+│   │   │   │   ├── constants.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── insertion-sort/  # Same structure as bubble-sort
+│   │   │   ├── selection-sort/  # Same structure as bubble-sort
 │   │   │   ├── InsertionSortVisualizer.tsx
 │   │   │   ├── MergeSortVisualizer.tsx
 │   │   │   ├── BubbleSortVisualizer.tsx
@@ -163,7 +170,8 @@ src/
 │   ├── PageLayout/              # Page layout components
 │   └── Icons/                   # Icon components
 ├── hooks/                       # Custom React hooks
-│   ├── useVisualizerControls.ts # Shared visualizer controls hook
+│   ├── useVisualizerControls.ts       # Shared visualizer controls hook
+│   ├── useSortingInitializer.ts       # Sorting initialization hook
 │   └── useDataStructureInitializer.ts # Data structure initialization hook
 ├── config/                      # Application configuration
 ├── modules/
@@ -233,84 +241,193 @@ Each visualizer includes:
 
 ### Adding a Sorting Algorithm
 
-To add a new sorting algorithm:
+All sorting algorithms (BubbleSort, InsertionSort, SelectionSort, ShellSort, MergeSort, QuickSort, HeapSort, CountingSort, RadixSort, BucketSort) follow a consistent modular folder structure with separation of concerns.
 
-1. **Create the visualizer component** in `src/components/algorithms/sorting/`
-   - Define your step interface with required fields: `array`, `sorted`, `highlightedLine`
-   - Use `useVisualizerControls` hook for playback controls
-   - Use `AlgorithmVisualizer` from `@/components/Visualizer`
+Steps to add a new sorting algorithm:
 
-2. **Export the visualizer** from `src/components/algorithms/sorting/index.ts`
+1. **Create folder**: `src/components/algorithms/sorting/[algorithm-name]/`
 
-3. **Create the algorithm page** using `AlgorithmPage` component
-
-4. **Add the route** to `src/modules/navigation/routes.tsx`
-
-5. **Update the navigation menu** in `src/modules/navigation/config.ts`
-
-Example structure for a new sorting algorithm:
+2. **Create `helpers.ts`** with algorithm logic:
 
 ```tsx
-// src/components/algorithms/sorting/QuickSortVisualizer.tsx
-import { useState, useEffect } from 'react';
-import { AlgorithmVisualizer } from '@/components/Visualizer';
-import { useVisualizerControls } from '@/hooks/useVisualizerControls';
+import type { BaseSortStep } from '../types';
 
-interface SortStep {
-  array: number[];
-  // ... your algorithm-specific fields
-  sorted: boolean;
-  highlightedLine: number;
+export interface YourSortStep extends BaseSortStep {
+  // Algorithm-specific fields
+  comparingIndices: number[];
+  swapped: boolean;
 }
 
-export const QuickSortVisualizer = () => {
-  const [steps, setSteps] = useState<SortStep[]>([]);
+export const getBarColor = (index: number, step: YourSortStep): string => {
+  if (step.sorted) {
+    return 'bg-green-400';
+  }
+  if (step.comparingIndices.includes(index)) {
+    if (step.swapped) {
+      return 'bg-red-400';
+    }
+    return 'bg-yellow-400';
+  }
+  return 'bg-gray-300';
+};
 
-  const generateSteps = (arr: number[]) => {
-    // Generate algorithm steps
-  };
+export const generateSteps = (arr: number[]): YourSortStep[] => {
+  const newSteps: YourSortStep[] = [];
+  const array = [...arr];
 
-  const controls = useVisualizerControls(steps, {
-    onGenerateArray: () => generateRandomArray(),
+  // Initial state
+  newSteps.push({
+    array: [...array],
+    sorted: false,
+    highlightedLine: 0,
+    comparingIndices: [],
+    swapped: false,
   });
 
+  // Algorithm implementation with step tracking
+  // ...
+
+  // Final sorted state
+  newSteps.push({
+    array: [...array],
+    sorted: true,
+    highlightedLine: finalLine,
+    comparingIndices: [],
+    swapped: false,
+  });
+
+  return newSteps;
+};
+```
+
+3. **Create `constants.ts`**:
+
+```tsx
+import type { SortingConfig } from '../types';
+
+export const YOUR_SORT_CONFIG: SortingConfig = {
+  arraySize: 10,
+  minValue: 1,
+  maxValue: 100,
+};
+
+export const CODE_LINES: string[] = [
+  'const yourSort = (arr: number[]): number[] => {',
+  '  // implementation',
+  '  return arr;',
+  '};',
+];
+
+export const LEGEND_ITEMS = [
+  { color: 'bg-yellow-400', label: 'Comparing' },
+  { color: 'bg-green-400', label: 'Sorted' },
+  { color: 'bg-gray-300', label: 'Unsorted' },
+];
+```
+
+4. **(Optional) Create Info component** if your algorithm needs to display extra information:
+
+```tsx
+import type { YourSortStep } from './helpers';
+
+interface YourSortInfoProps {
+  step: YourSortStep;
+}
+
+export const YourSortInfo = ({ step }: YourSortInfoProps) => {
+  if (!step.someCondition) {
+    return null;
+  }
+
   return (
-    <AlgorithmVisualizer
+    <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+      <p className="text-sm text-blue-800">
+        <strong>Label:</strong> {step.someValue}
+      </p>
+      <p className="text-xs text-blue-600 mt-1">
+        Explanation text
+      </p>
+    </div>
+  );
+};
+```
+
+Examples: **ShellSort** (gap), **QuickSort** (range/pivot), **HeapSort** (heap size/phase)
+
+5. **Create `index.ts`** for barrel exports:
+
+```tsx
+export { CODE_LINES, LEGEND_ITEMS, YOUR_SORT_CONFIG } from './constants';
+export { generateSteps, getBarColor } from './helpers';
+export type { YourSortStep } from './helpers';
+// If you created an Info component:
+export { YourSortInfo } from './YourSortInfo';
+```
+
+6. **Create visualizer**: `YourSortVisualizer.tsx` using `useSortingInitializer` hook:
+
+```tsx
+import { useMemo } from 'react';
+import { SortingVisualizer } from '@/components/Visualizer';
+import { useVisualizerControls } from '@/hooks/useVisualizerControls';
+import { useSortingInitializer } from '@/hooks/useSortingInitializer';
+import { DEFAULT_SORTING_CONFIG } from './types';
+import {
+  CODE_LINES,
+  LEGEND_ITEMS,
+  YOUR_SORT_CONFIG,
+  generateSteps,
+  getBarColor,
+  YourSortInfo, // Only if you created an Info component
+} from './your-sort';
+
+export const YourSortVisualizer = () => {
+  const config = useMemo(
+    () => ({ ...DEFAULT_SORTING_CONFIG, ...YOUR_SORT_CONFIG }),
+    []
+  );
+
+  const { steps, initializeData } = useSortingInitializer({
+    generateSteps,
+    config,
+  });
+
+  const controls = useVisualizerControls(steps, {
+    onGenerateArray: initializeData,
+  });
+
+  // Only if you have an Info component:
+  const extraInfo = controls.currentStepData ? (
+    <YourSortInfo step={controls.currentStepData} />
+  ) : null;
+
+  return (
+    <SortingVisualizer
       controls={controls}
       codeLines={CODE_LINES}
       legendItems={LEGEND_ITEMS}
       getBarColor={getBarColor}
-    />
-  );
-};
-
-// src/components/algorithms/sorting/index.ts
-export { QuickSortVisualizer } from './QuickSortVisualizer';
-// ... other sorting exports
-
-// src/pages/sorting/QuickSort.tsx
-import { AlgorithmPage } from '@/components/AlgorithmPage';
-import { QuickSortVisualizer } from '@/components/algorithms';
-
-export const QuickSort = () => {
-  return (
-    <AlgorithmPage
-      title="Quick Sort"
-      overview={{
-        description: "Your algorithm description...",
-        advantages: ["Advantage 1", "Advantage 2"],
-      }}
-      visualizer={<QuickSortVisualizer />}
-      complexityAnalysis={[
-        { case: 'Best Case', complexity: 'O(n log n)', description: '...' },
-      ]}
-      howItWorks={[
-        { number: 1, title: 'Step 1', description: '...' },
-      ]}
+      extraInfo={extraInfo} // Only if you have an Info component
     />
   );
 };
 ```
+
+7. **Export visualizer** from `src/components/algorithms/sorting/index.ts`
+
+8. **Create page** using `AlgorithmPage` template
+
+9. **Add route** to `src/modules/navigation/routes.tsx`
+
+10. **Update navigation** in `src/modules/navigation/config.ts`
+
+**Key Points**:
+- Use `useSortingInitializer` hook for array generation and initialization
+- Use `useMemo` to prevent config recreation
+- Step interface extends `BaseSortStep` (array, sorted, highlightedLine)
+- `helpers.ts` contains all algorithm logic: step generation and color logic
+- Optional Info component for complex algorithms that need extra information display
+- Separate concerns: helpers, constants, optional info, visualizer
 
 ### Adding a Data Structure
 
